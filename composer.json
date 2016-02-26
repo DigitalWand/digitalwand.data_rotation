@@ -1,0 +1,31 @@
+{
+  "name": "digitalwand/digitalwand.data_rotation",
+  "description": "Module for custom data dump and restore for any database tables in Bitrix by DigitalWand and Notamedia agency",
+  "type": "bitrix-module",
+  "license": "MIT",
+  "keywords": [
+    "bitrix",
+    "database",
+    "data",
+    "rotation"
+  ],
+  "support": {
+    "issues": "https://github.com/DigitalWand/digitalwand.data_rotation/issues",
+    "source": "https://github.com/DigitalWand/digitalwand.data_rotation"
+  },
+  "authors": [
+    {
+      "name": "Oleg Nagornov",
+      "email": "nagornov.oi@yandex.ru"
+    },
+  ],
+  "extra": {
+    "installer-name": "digitalwand.data_rotation"
+  },
+  "require": {
+    "php": ">=5.3.0",
+    "digitalwand/digitalwand.admin_helper": "1.x-dev",
+    "composer/installers": "~1"
+  },
+  "minimum-stability": "dev"
+}
