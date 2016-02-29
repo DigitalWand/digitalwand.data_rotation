@@ -1,6 +1,8 @@
 <?
 namespace DigitalWand\DataRotation\Helpers;
 use DigitalWand\AdminHelper\Helper\AdminListHelper;
+use Bitrix\Main\Application;
+use DigitalWand\DataRotation\Operators\TablesOperator;
 
 class ExportLogListHelper extends AdminListHelper
 {
@@ -8,13 +10,43 @@ class ExportLogListHelper extends AdminListHelper
 	protected static $model = '\DigitalWand\DataRotation\Entities\ExportLogTable';
 	static protected $viewName = 'export-log-list';
     static protected $editViewName = 'export-log-detail';
-	
+
+    public function __construct(array $fields)
+    {
+        $request = Application::getInstance()->getContext()->getRequest();
+        if ($request->isAjaxRequest()) {
+            global $APPLICATION;
+            $APPLICATION->RestartBuffer();
+
+            $action = $request->get('ajaxAction');
+            switch ($action) {
+                case 'undump':
+
+                    $filename = $_REQUEST['fileName'];
+                    $status = TablesOperator::undump($filename);
+
+                    $result = array(
+                        'status' => $status ? 'Данные восстановлены' : 'Произошла ошибка',
+                    );
+
+                    header("Content-Type: application/json", true);
+                    echo json_encode($result);
+
+                    break;
+            }
+
+            exit();
+        }
+
+        parent::__construct($fields);
+    }
+
 	/**
      * Не создаем кнопку добавления элемента (есть в родительском классе)
      */
     protected function addContextMenu()
     {
-
+        $this->contextMenu = array();
     }
 
     /**

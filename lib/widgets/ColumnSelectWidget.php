@@ -51,8 +51,9 @@ class ColumnSelectWidget extends ComboBoxWidget
                 $(document).ready(function() {
                     $('#".$this->getSettings("TARGET_ID")."').change(function() {
                         $.post(
-                            '/bitrix/admin/ajax/digitalwand_data_rotation_get_fields.php',
+                            '',
                             {
+                                ajaxAction: 'get_fields',
                                 tableName: $(this).val()
                             },
                             function (responce) {                           

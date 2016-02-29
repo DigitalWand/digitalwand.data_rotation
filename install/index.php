@@ -59,7 +59,6 @@ class digitalwand_data_rotation extends CModule
         global $APPLICATION;
 
         RegisterModule($this->MODULE_ID);
-        $this->InstallFiles();
         $this->InstallDB();
 
         $APPLICATION->IncludeAdminFile(Loc::getMessage('DATA_ROTATION_INSTALL_TITLE'), __DIR__ . '/step.php');
@@ -73,23 +72,9 @@ class digitalwand_data_rotation extends CModule
 
         UnRegisterModule($this->MODULE_ID);
         $this->UnInstallDB();
-        $this->UnInstallFiles();
 
 
         $APPLICATION->IncludeAdminFile(Loc::getMessage('DATA_ROTATION_INSTALL_TITLE'), __DIR__ . '/unstep.php');
     }
 
-    function InstallFiles()
-    {
-        CopyDirFiles(__DIR__ . '/admin', $_SERVER['DOCUMENT_ROOT'] . '/bitrix/admin');
-
-        return true;
-    }
-    
-    function UnInstallFiles()
-    {
-        DeleteDirFiles(__DIR__ . '/admin', $_SERVER['DOCUMENT_ROOT'] . '/bitrix/admin');
-
-        return true;
-    }
 }

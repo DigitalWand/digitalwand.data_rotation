@@ -43,8 +43,9 @@ class UndumpWidget extends StringWidget
                     $('#undump_button_".$this->data['ID']."').click(function() {
                         $('#undump_button_".$this->data['ID']."').attr('disabled', 'disabled');
                         $.post(
-                            '/bitrix/admin/ajax/digitalwand_data_rotation_undump.php',
+                            '',
                             {
+                                ajaxAction: 'undump',
                                 fileName: '".$this->data['DUMP_FILE_NAME']."'
                             },
                             function (responce) {                           

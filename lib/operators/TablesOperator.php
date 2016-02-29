@@ -10,10 +10,12 @@ use DigitalWand\DataRotation\Entities\ExportLogTable;
 
 class TablesOperator
 {
-	private static $dumpDir = __DIR__.'/../../dumps/';
+    private static function getDumpDir()
+    {
+        return __DIR__ . '/../../dumps/';
+    }
 
-
-	public static function getTablesList()
+    public static function getTablesList()
 	{
 		global $DB;
 		
@@ -256,8 +258,11 @@ class TablesOperator
 	private static function dump($table, $dumpDir = false)
 	{
 		global $DB, $DBHost, $DBName, $DBLogin, $DBPassword;
-		
-		$dumpDir = !$dumpDir ? self::$dumpDir : $dumpDir;
+
+        $dumpDir = !$dumpDir ? self::getDumpDir() : $dumpDir;
+        if (!file_exists($dumpDir)) {
+            mkdir($dumpDir, 0777, true);
+        }
 		
 		$filename = $dumpDir.$table;
 		
@@ -297,8 +302,8 @@ class TablesOperator
 	public function undump($file, $dumpdir = false)
 	{
 		global $DB, $DBHost, $DBName, $DBLogin, $DBPassword;
-		
-		$dumpDir = !$dumpDir ? self::$dumpDir : $dumpDir;
+
+        $dumpDir = !$dumpDir ? self::getDumpDir() : $dumpDir;
 		
 		$dubleTableName = str_replace('.tar.bz2', '', $file);
 		
