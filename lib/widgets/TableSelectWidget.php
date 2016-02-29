@@ -4,6 +4,7 @@ namespace DigitalWand\DataRotation\Widgets;
 
 use DigitalWand\AdminHelper\Widget\ComboBoxWidget;
 use DigitalWand\DataRotation\Operators\TablesOperator;
+
 /**
  * Class ComboBoxWidget Выпадающий список
  * Доступные опции:
@@ -30,7 +31,7 @@ class TableSelectWidget extends ComboBoxWidget
         $style = $this->getSettings('STYLE');
 
         $name = $forFilter ? $this->getFilterInputName() : $this->getEditInputName();
-        $result = "<select name='" . $name . "' style='" . $style . "' ".($this->getSettings('ID') ? "id='".$this->getSettings('ID')."'" : "").">";
+        $result = "<select name='" . $name . "' style='" . $style . "' " . ($this->getSettings('ID') ? "id='" . $this->getSettings('ID') . "'" : "") . ">";
         $variants = $this->getVariants();
         $default = $this->getValue();
         if (is_null($default)) {
@@ -61,12 +62,13 @@ class TableSelectWidget extends ComboBoxWidget
     protected function getVariants()
     {
         $variants = array();
-        
+
         $dbRes = TablesOperator::getTablesList();
         while ($item = $dbRes->fetch()) {
             $tableName = array_pop($item);
             $variants[$tableName] = $tableName;
         }
+
         return $variants;
     }
 }

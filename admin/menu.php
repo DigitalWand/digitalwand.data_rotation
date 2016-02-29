@@ -21,10 +21,10 @@ return array(
         "items_id" => "menu_dw_data_rotation",
         "more_url" => array(
             ExportSettingsEditHelper::getEditPageURL(),
-			ExportSettingsListHelper::getListPageURL(),
-			ExportLogListHelper::getListPageURL(),
+            ExportSettingsListHelper::getListPageURL(),
+            ExportLogListHelper::getListPageURL(),
         ),
-		'items' => array(
+        'items' => array(
             array(
                 "text" => Loc::getMessage("DATA_ROTATION_MENU_SETTINGS_TEXT"),
                 "url" => ExportSettingsListHelper::getListPageUrl(),

@@ -1,22 +1,19 @@
 <?php
 
 namespace DigitalWand\DataRotation\Entities;
+
 use Bitrix\Main\Entity;
 use Bitrix\Main\Type\DateTime;
 
 
 class ExportSettingsTable extends Entity\DataManager
 {
-	
-	/**
-	 * Название таблицы.
-	 */
-	public static function getTableName()
-	{
-		return 'dw_export_settings';
-	}
-	
-	public static function getMap()
+    public static function getTableName()
+    {
+        return 'dw_export_settings';
+    }
+
+    public static function getMap()
     {
         $fieldsMap = array(
             'ID' => array(
@@ -36,16 +33,16 @@ class ExportSettingsTable extends Entity\DataManager
             'START_VALUE' => array(
                 'data_type' => 'string'
             ),
-			'FINISH_VALUE' => array(
+            'FINISH_VALUE' => array(
                 'data_type' => 'string'
             ),
-			'REPEAT' => array(
+            'REPEAT' => array(
                 'data_type' => 'string'
             ),
-			'REPEAT_TIME' => array(
+            'REPEAT_TIME' => array(
                 'data_type' => 'string'
             ),
-			'START_AT' => array(
+            'START_AT' => array(
                 'data_type' => 'string'
             ),
             'LAST_START_AT' => array(

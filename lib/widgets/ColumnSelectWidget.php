@@ -32,24 +32,25 @@ class ColumnSelectWidget extends ComboBoxWidget
         $style = $this->getSettings('STYLE');
 
         $name = $forFilter ? $this->getFilterInputName() : $this->getEditInputName();
-        $result = "<select name='" . $name . "' style='" . $style . "' ".($this->getSettings('ID') ? "id='".$this->getSettings("ID")."'" : "").">";
+        $result = "<select name='" . $name . "' style='" . $style . "' " . ($this->getSettings('ID') ? "id='" . $this->getSettings("ID") . "'" : "") . ">";
         $default = $this->getValue();
         if (is_null($default)) {
             $default = $this->getSettings('DEFAULT_VARIANT');
         }
 
+        //FIXME: WHAT??!
         foreach ($variants as $id => $name) {
             $result .= "<option value='" . $id . "' " . ($id == $default ? "selected" : "") . ">" . $name . "</option>";
         }
 
         $result .= "</select>";
-        
+
         $result .= "
             <script type='text/javascript'>
-                var ".$this->getSettings("TARGET_ID")."_firstTime = true;
-                var ".$this->getSettings("TARGET_ID")."_initDefault = true;
+                var " . $this->getSettings("TARGET_ID") . "_firstTime = true;
+                var " . $this->getSettings("TARGET_ID") . "_initDefault = true;
                 $(document).ready(function() {
-                    $('#".$this->getSettings("TARGET_ID")."').change(function() {
+                    $('#" . $this->getSettings("TARGET_ID") . "').change(function() {
                         $.post(
                             '',
                             {
@@ -57,24 +58,24 @@ class ColumnSelectWidget extends ComboBoxWidget
                                 tableName: $(this).val()
                             },
                             function (responce) {                           
-                                $('#".$this->getSettings("ID")."').html('');
+                                $('#" . $this->getSettings("ID") . "').html('');
                                 var html = '';
                                 for (key in responce) {
                                     html += '<option value=' + responce[key].NAME +'>' + responce[key].NAME + ' ' + responce[key].TYPE +'</option>';
                                 }
-                                $('#".$this->getSettings("ID")."').html(html);
+                                $('#" . $this->getSettings("ID") . "').html(html);
                                 
-                                if (".$this->getSettings("TARGET_ID")."_initDefault) {
-                                    ".$this->getSettings("TARGET_ID")."_initDefault = false;
-                                    $('#".$this->getSettings("ID")." option[value=".$default."]').attr('selected', 'selected');
+                                if (" . $this->getSettings("TARGET_ID") . "_initDefault) {
+                                    " . $this->getSettings("TARGET_ID") . "_initDefault = false;
+                                    $('#" . $this->getSettings("ID") . " option[value=" . $default . "]').attr('selected', 'selected');
                                 }
                             },
                             'json'
                         );
                     });
-                    if (".$this->getSettings("TARGET_ID")."_firstTime) {
-                        ".$this->getSettings("TARGET_ID")."_firstTime = false;
-                        $('#".$this->getSettings("TARGET_ID")."').change();
+                    if (" . $this->getSettings("TARGET_ID") . "_firstTime) {
+                        " . $this->getSettings("TARGET_ID") . "_firstTime = false;
+                        $('#" . $this->getSettings("TARGET_ID") . "').change();
                     }
                 });
             </script>

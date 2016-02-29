@@ -17,7 +17,7 @@
     {
       "name": "Oleg Nagornov",
       "email": "nagornov.oi@yandex.ru"
-    },
+    }
   ],
   "extra": {
     "installer-name": "digitalwand.data_rotation"

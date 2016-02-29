@@ -3,6 +3,7 @@
 namespace DigitalWand\DataRotation\Widgets;
 
 use DigitalWand\AdminHelper\Widget\StringWidget;
+
 /**
  * Class ComboBoxWidget Выпадающий список
  * Доступные опции:
@@ -28,28 +29,28 @@ class UndumpWidget extends StringWidget
     {
         \CJSCore::Init(array("jquery"));
         $style = $this->getSettings('STYLE');
-        
+
         $name = $forFilter ? $this->getFilterInputName() : $this->getEditInputName();
-        
+
         if (isset($this->data['DIRECTION']) && $this->data['DIRECTION'] == 'import') {
             return '';
         }
-        
-        $result = "<input type='button' value='Применить дамп' style='" . $style . "' id='undump_button_".$this->data['ID']."'/>";
-        
+
+        $result = "<input type='button' value='Применить дамп' style='" . $style . "' id='undump_button_" . $this->data['ID'] . "'/>";
+
         $result .= "
             <script type='text/javascript'>
                 $(document).ready(function() {
-                    $('#undump_button_".$this->data['ID']."').click(function() {
-                        $('#undump_button_".$this->data['ID']."').attr('disabled', 'disabled');
+                    $('#undump_button_" . $this->data['ID'] . "').click(function() {
+                        $('#undump_button_" . $this->data['ID'] . "').attr('disabled', 'disabled');
                         $.post(
                             '',
                             {
                                 ajaxAction: 'undump',
-                                fileName: '".$this->data['DUMP_FILE_NAME']."'
+                                fileName: '" . $this->data['DUMP_FILE_NAME'] . "'
                             },
                             function (responce) {                           
-                                $('#undump_button_".$this->data['ID']."').attr('value', responce.status);
+                                $('#undump_button_" . $this->data['ID'] . "').attr('value', responce.status);
                             },
                             'json'
                         );
@@ -60,7 +61,7 @@ class UndumpWidget extends StringWidget
 
         return $result;
     }
-    
+
     public function genListHTML(&$row, $data)
     {
         $row->AddViewField($this->getCode(), $this->genEditHTML());

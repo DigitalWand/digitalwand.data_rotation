@@ -1,14 +1,15 @@
 <?
 namespace DigitalWand\DataRotation\Helpers;
+
 use DigitalWand\AdminHelper\Helper\AdminListHelper;
 use Bitrix\Main\Application;
 use DigitalWand\DataRotation\Operators\TablesOperator;
 
 class ExportLogListHelper extends AdminListHelper
 {
-	static public $module = 'digitalwand.data_rotation';
-	protected static $model = '\DigitalWand\DataRotation\Entities\ExportLogTable';
-	static protected $viewName = 'export-log-list';
+    static public $module = 'digitalwand.data_rotation';
+    protected static $model = '\DigitalWand\DataRotation\Entities\ExportLogTable';
+    static protected $viewName = 'export-log-list';
     static protected $editViewName = 'export-log-detail';
 
     public function __construct(array $fields)
@@ -41,7 +42,7 @@ class ExportLogListHelper extends AdminListHelper
         parent::__construct($fields);
     }
 
-	/**
+    /**
      * Не создаем кнопку добавления элемента (есть в родительском классе)
      */
     protected function addContextMenu()
@@ -56,7 +57,7 @@ class ExportLogListHelper extends AdminListHelper
      */
     protected function addRowActions($data)
     {
-        $actions =  parent::addRowActions($data);
+        $actions = parent::addRowActions($data);
         unset($actions['delete']);
         return $actions;
     }

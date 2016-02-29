@@ -1,22 +1,19 @@
 <?php
 
 namespace DigitalWand\DataRotation\Entities;
+
 use Bitrix\Main\Entity;
 use Bitrix\Main\Type\DateTime;
 
 
 class ExportLogTable extends Entity\DataManager
 {
-	
-	/**
-	 * Название таблицы.
-	 */
-	public static function getTableName()
-	{
-		return 'dw_export_log';
-	}
-	
-	public static function getMap()
+    public static function getTableName()
+    {
+        return 'dw_export_log';
+    }
+
+    public static function getMap()
     {
         $fieldsMap = array(
             'ID' => array(
@@ -36,7 +33,7 @@ class ExportLogTable extends Entity\DataManager
             'DIRECTION' => array(
                 'data_type' => 'string'
             ),
-			'UPDATE_AT' => array(
+            'UPDATE_AT' => array(
                 'data_type' => 'string'
             ),
         );

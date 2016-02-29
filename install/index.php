@@ -16,7 +16,7 @@ class digitalwand_data_rotation extends CModule
     var $MODULE_GROUP_RIGHTS = 'Y';
     var $MODULE_CSS;
     var $PARTNER_NAME = 'DigitalWand';
-    var $PARTNER_URI = '';
+    var $PARTNER_URI = 'http://digitalwand.ru';
 
     function digitalwand_data_rotation()
     {
@@ -31,29 +31,27 @@ class digitalwand_data_rotation extends CModule
     function InstallDB()
     {
         global $DB, $APPLICATION;
-		
-        $errors = $DB->RunSQLBatch($_SERVER["DOCUMENT_ROOT"]."/local/modules/digitalwand.data_rotation/install/mysql/install.sql");
-		if (!empty($errors))
-		{
-			$APPLICATION->ThrowException(implode("", $errors));
-			return false;
-		}
+
+        $errors = $DB->RunSQLBatch($_SERVER["DOCUMENT_ROOT"] . "/local/modules/digitalwand.data_rotation/install/mysql/install.sql");
+        if (!empty($errors)) {
+            $APPLICATION->ThrowException(implode("", $errors));
+            return false;
+        }
         return true;
     }
-    
+
     function UnInstallDB()
     {
         global $DB, $APPLICATION;
-		
-        $errors = $DB->RunSQLBatch($_SERVER["DOCUMENT_ROOT"]."/local/modules/digitalwand.data_rotation/install/mysql/uninstall.sql");
-		if (!empty($errors))
-		{
-			$APPLICATION->ThrowException(implode("", $errors));
-			return false;
-		}
+
+        $errors = $DB->RunSQLBatch($_SERVER["DOCUMENT_ROOT"] . "/local/modules/digitalwand.data_rotation/install/mysql/uninstall.sql");
+        if (!empty($errors)) {
+            $APPLICATION->ThrowException(implode("", $errors));
+            return false;
+        }
         return true;
     }
-    
+
     function DoInstall()
     {
         global $APPLICATION;
